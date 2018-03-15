@@ -17,15 +17,33 @@ public class CollectionTestSuite {
     }
     @Test
     public void testOddNumbersExterminatorEmptyList(){
-        list.clear();
+        ArrayList<Integer> finalList = new ArrayList<Integer>();
+        finalList.clear();
         OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
-        oddNumbersExterminator.exterminate(list);
+        oddNumbersExterminator.exterminate(finalList);
         //When
-        for(OddNumbersExterminator testEmptyList: list) {
+        for(Integer testEmptyList: finalList) {
             System.out.println("Testing " + testEmptyList);
-        }
+
             //Then
-            Assert.assertEquals(null, testEmptyList);
+            Assert.assertNull(testEmptyList);
+        }
     }
-          //  testOddNumbersExterminatorNormalList
+
+    @Test
+    public void testOddNumbersExterminatorNormalList() {
+        ArrayList<Integer> finalList = new ArrayList<Integer>();
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
+        oddNumbersExterminator.exterminate(finalList);
+        //When
+//        for (Integer testExtList : oddNumbersExterminator.exterminate(finalList)) {
+//            System.out.println("Testing " + testExtList);
+//        }
+        ArrayList<Integer> testList = new ArrayList<Integer>();
+        testList.add(6);
+        testList.add(4);
+        //Then
+        Assert.assertEquals(oddNumbersExterminator.exterminate(finalList), testList);
+
+    }
 }
