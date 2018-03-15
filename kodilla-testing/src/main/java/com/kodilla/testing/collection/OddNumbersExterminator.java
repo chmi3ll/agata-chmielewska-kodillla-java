@@ -7,8 +7,8 @@ public class OddNumbersExterminator {
     public void exterminate(ArrayList<Integer> numbers) {
 
         int temporaryValue = 0;
-        for (int i = 0; i < list.size(); i++) {
-            temporaryValue = list.get(i);
+        for (int i = 0; i < numbers.size(); i++) {
+            temporaryValue = numbers.get(i);
             if (temporaryValue % 2 == 0) {
                 numbers.add(temporaryValue);
             }
@@ -28,7 +28,6 @@ class Application {
         list.add(0);
         list.add(3);
 
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
     }
 }
 
