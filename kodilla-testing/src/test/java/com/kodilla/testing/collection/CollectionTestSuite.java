@@ -18,16 +18,12 @@ public class CollectionTestSuite {
     @Test
     public void testOddNumbersExterminatorEmptyList(){
         ArrayList<Integer> finalList = new ArrayList<Integer>();
-        finalList.clear();
         //When
-        for(Integer testEmptyList: finalList) {
-            System.out.println("Testing " + testEmptyList);
-
-            //Then
-            Assert.assertNull(testEmptyList);
-        }
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
+        ArrayList<Integer> testEmptyList = oddNumbersExterminator.exterminate(finalList);
+        //Then
+        Assert.assertTrue(testEmptyList.size()==0);
     }
-
 
     @Test
     public void testOddNumbersExterminatorNormalList() {
@@ -41,14 +37,14 @@ public class CollectionTestSuite {
         finalList.add(15);
         //When
         OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
-        oddNumbersExterminator.exterminate(finalList);
+        ArrayList <Integer> result = oddNumbersExterminator.exterminate(finalList);
 
         ArrayList<Integer> testList = new ArrayList<Integer>();
         testList.add(4);
         testList.add(10);
         testList.add(14);
         //Then
-        Assert.assertEquals(oddNumbersExterminator.exterminate(finalList), testList);
+        Assert.assertEquals(result, testList);
 
     }
 }
