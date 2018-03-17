@@ -4,8 +4,13 @@ import java.lang.reflect.Field;
 
 public class Triangle implements Shape {
 
-    private String shapeName = "triangle";
-    private int field = 15;
+    private String shapeName;
+    private int field;
+
+    public Triangle(String shapeName, int field) {
+        this.shapeName = shapeName;
+        this.field = field;
+    }
 
     public String getShapeName(){
         return shapeName;

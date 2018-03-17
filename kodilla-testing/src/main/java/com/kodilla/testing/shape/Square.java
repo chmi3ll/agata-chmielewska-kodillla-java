@@ -4,8 +4,13 @@ import java.lang.reflect.Field;
 
 public class Square implements Shape {
 
-    private String shapeName = "square";
-    private int field = 56;
+    private String shapeName;
+    private int field;
+
+    public Square(String shapeName, int field) {
+        this.shapeName = shapeName;
+        this.field = field;
+    }
 
     public String getShapeName(){
         return shapeName;

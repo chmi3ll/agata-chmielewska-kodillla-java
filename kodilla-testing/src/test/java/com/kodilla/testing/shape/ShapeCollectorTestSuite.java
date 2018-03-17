@@ -1,5 +1,7 @@
+import com.kodilla.testing.shape.Circle;
 import com.kodilla.testing.shape.ShapeCollector;
 import com.kodilla.testing.shape.Square;
+import com.kodilla.testing.shape.Triangle;
 import org.junit.*;
 import org.junit.Test;
 
@@ -32,37 +34,53 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testAddFigure() {
         //Given
-        ShapeCollector figury = new ShapeCollector("square", 56);
-        Square kwadrat = new Square();
+        ShapeCollector figury = new ShapeCollector();
+        Square kwadrat = new Square("square", 56);
         //When
         figury.addFigure(kwadrat);
 
         //Then
-        Assert.assertEquals(56, kwadrat.getField());
-//        Assert.assertEquals("square", kwadrat.getShapeName());
+        Assert.assertEquals(1, figury.getSize());
     }
 
     @Test
     public void testRemoveFigure() {
         //Given
-        ShapeCollector figury = new ShapeCollector("square", 56);
-        Square kwadrat = new Square();
+        ShapeCollector figury = new ShapeCollector();
+        Square kwadrat = new Square("square", 56);
+        figury.addFigure(kwadrat);
         //When
-        boolean result = figury.removeFigure(kwadrat);
+        figury.removeFigure(kwadrat);
 
         //Then
-        Assert.assertFalse(result);
+        Assert.assertEquals(0, figury.getSize());
     }
 
     @Test
     public void testgetFigure() {
         //Given
-        ShapeCollector figury = new ShapeCollector("square", 56);
-        Square kwadrat = new Square();
+        ShapeCollector figury = new ShapeCollector();
+        Square kwadrat = new Square("square", 56);
+        figury.addFigure(kwadrat);
         //When
-        figury.getFigure(1);
+        figury.getFigure(0);
         //Then
         Assert.assertEquals(kwadrat, figury.getFigure(0));
+    }
+
+    @Test
+    public void testShowFigures(){
+        ShapeCollector figury = new ShapeCollector();
+        Square kwadrat = new Square("square", 56);
+        Circle kolo = new Circle("circle", 10);
+        Triangle trojkat = new Triangle("triangle", 38);
+        //When
+        figury.addFigure(kwadrat);
+        figury.addFigure(kolo);
+        figury.addFigure(trojkat);
+        //Then
+        Assert.assertEquals(3, figury.getSize());
+
     }
 }
 

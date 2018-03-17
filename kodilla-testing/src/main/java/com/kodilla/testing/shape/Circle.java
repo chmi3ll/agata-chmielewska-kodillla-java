@@ -5,8 +5,13 @@ import java.lang.reflect.Field;
 
 public class Circle implements Shape {
 
-    private String shapeName = "circle";
-    private int field = 80;
+    private String shapeName;
+    private int field;
+
+    public Circle(String shapeName, int field) {
+        this.shapeName = shapeName;
+        this.field = field;
+    }
 
     public String getShapeName(){
         return shapeName;

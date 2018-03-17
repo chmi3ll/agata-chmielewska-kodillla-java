@@ -4,15 +4,8 @@ import java.util.ArrayList;
 
 public class ShapeCollector {
 
-    private String shapeName;
-    private int shapeField;
     private ArrayList<Shape> shapesList = new ArrayList<Shape>();
-    private int i;
 
-    public ShapeCollector(String shapeName, int shapeField){
-       this.shapeName=shapeName;
-       this.shapeField=shapeField;
-       }
 //dodającą figurę do kolekcji,
     public void addFigure(Shape shape){
     shapesList.add(shape);
@@ -37,12 +30,19 @@ public class ShapeCollector {
         return figura;
     }
 
-        // showFigures(){
-        //      if (shapesList.size() != 0){
-        //      for(Shape lista: shapesList) {
-        //          System.out.println(lista);
-        //      }
-        //      }
+    public int getSize() {
+        return shapesList.size();
+    }
+
+    public ArrayList showFigures() {
+        if (shapesList.size() != 0) {
+            for (int i=0; i<shapesList.size(); i++) {
+                shapesList.get(i);
+            }
+
+        }
+        return shapesList;
+    }
 }
 
 
