@@ -44,7 +44,7 @@ public class CollectionTestSuite {
         testList.add(10);
         testList.add(14);
         //Then
-        Assert.assertEquals(result, testList);
+        Assert.assertEquals(testList, result);
 
     }
 }
