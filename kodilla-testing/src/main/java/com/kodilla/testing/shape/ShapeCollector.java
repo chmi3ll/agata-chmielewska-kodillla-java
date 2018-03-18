@@ -34,14 +34,16 @@ public class ShapeCollector {
         return shapesList.size();
     }
 
-    public ArrayList showFigures() {
-        if (shapesList.size() != 0) {
-            for (int i=0; i<shapesList.size(); i++) {
-                shapesList.get(i);
-            }
-
+    public String showFigures() {
+        Shape figura = null;
+        for (int n=0; n<shapesList.size(); n++){
+            figura = shapesList.get(n);
         }
-        return shapesList;
+        String listString = "";
+        for(Shape s: shapesList){
+            listString += s.getShapeName() + "\t";
+        }
+        return listString;
     }
 }
 
