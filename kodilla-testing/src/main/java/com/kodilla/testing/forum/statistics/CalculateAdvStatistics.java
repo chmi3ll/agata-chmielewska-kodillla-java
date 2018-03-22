@@ -1,17 +1,14 @@
 package com.kodilla.testing.forum.statistics;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CalculateAdvStatistics {
 
     Statistics statistics;
 
-    private int numberOfUsers;
+    private double numberOfUsers;
 
-    private int numberOfPosts;
+    private double numberOfPosts;
 
-    private int numberOfComments;
+    private double numberOfComments;
 
     private double userPostAverage;
 
@@ -32,45 +29,35 @@ public class CalculateAdvStatistics {
 
         numberOfComments = statistics.commentsCount();
 
-        userPostAverage = statistics.postCount() / statistics.userNames().size();
+        if (statistics.userNames().size() == 0){
+            userPostAverage = 0;
+        } else {
+            userPostAverage = statistics.postCount() / statistics.userNames().size();
+        }
 
-        userCommentAverage = numberOfComments / numberOfUsers;
+        if (statistics.userNames().size() == 0){
+            userCommentAverage = 0;
+        } else {
+            userCommentAverage = numberOfComments / numberOfUsers;
 
-        postCommentAverage = numberOfComments / numberOfPosts;
+        }
 
+        if (statistics.postCount() == 0){
+            postCommentAverage =0;
+        } else {
+            postCommentAverage = numberOfComments / numberOfPosts;
+        }
     }
 
-        public int getNumberOfUsers(){
-            return numberOfUsers;
-        }
-
-        public int getNumberOfPosts(){
-            return numberOfPosts;
-        }
-
-        public int getNumberOfComments(){
-            return numberOfComments;
-        }
-
         public double getUserPostAverage(){
-            if (numberOfUsers!= 0){
                 return userPostAverage;
-            } else return 0;
         }
 
         public double getUserCommentAverage(){
-            if(numberOfUsers!=0){
                 return userCommentAverage;
-            } else return 0;
         }
 
         public double getPostCommentAverage(){
-            if(numberOfUsers!=0){
                 return postCommentAverage;
-            } else return 0;
         }
-
-
-        //   public showStatistics() {
-
-    }
+        }
