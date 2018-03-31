@@ -2,6 +2,7 @@ package com.kodilla.stream.world;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public final class World {
 
@@ -11,14 +12,11 @@ public final class World {
         world.add(continent);
     }
 
-    public List<Continent> getContinents() {
-        return new ArrayList<>(world);
-    }
-
-    public List<BigDecimal> getPeopleQuantity() {
+    public BigDecimal getPeopleQuantity() {
+      //  return
         return world.stream()
-                .flatMap(w -> w.getContinents().stream())
-                .map(w -> w.getPeopleQuantity())
+                .flatMap(w -> w.getCountries().stream())
+                .map(Country::getPeopleQuantity)
                 .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
 
     }
