@@ -1,11 +1,24 @@
 package com.kodilla.stream.portfolio;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
+
+import static java.util.stream.Collectors.toList;
 
 public class BoardTestSuite {
     public Board prepareTestData(){
         //users
-        User user1 - new User("developer1", "John Smith");
+        User user1 = new User("developer1", "John Smith");
         User user2 = new User("projectmanager1", "Nina White");
         User user3 = new User("developer2", "Emilia Stephenson");
         User user4 = new User("developer3", "Konrad Bridge");
@@ -48,7 +61,128 @@ public class BoardTestSuite {
                 LocalDate.now().minusDays(15),
                 LocalDate.now().minusDays(2));
         //taskLists
-        TaskList taskList
+        TaskList taskListToDo = new TaskList("To do");
+        taskListToDo.addTask(task1);
+        taskListToDo.addTask(task3);
+        TaskList taskListInProgress = new TaskList("In progress");
+        taskListInProgress.addTask(task5);
+        taskListInProgress.addTask(task4);
+        taskListInProgress.addTask(task2);
+        TaskList taskListDone = new TaskList("Done");
+        taskListDone.addTask(task6);
+        //board
+        Board project = new Board("Project Weather Prediction");
+        project.addTaskList(taskListToDo);
+        project.addTaskList(taskListInProgress);
+        project.addTaskList(taskListDone);
+        return project;
+    }
+
+    @Test
+    public void testAddTaskList() {
+        //Given
+        Board project = prepareTestData();
+        //When
+
+        //Then
+        Assert.assertEquals(3, project.getTaskLists().size());
+    }
+
+    @Test
+    public void testAddTaskListFindUsersTasks() {
+        //Given
+        Board project = prepareTestData();
+        //When
+        User user = new User("developer1", "John Smith");
+        List<Task> tasks = project.getTaskLists().stream()
+                .flatMap(l -> l.getTasks().stream())
+                .filter(t -> t.getAssignedUser().equals(user))
+                .collect(toList());
+        //Then
+        Assert.assertEquals(2, tasks.size());
+        Assert.assertEquals(user, tasks.get(0).getAssignedUser());
+        Assert.assertEquals(user, tasks.get(1).getAssignedUser());
+
+    }
+    @Test
+    public void testAddTaskListFindOutdatedTasks() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> undoneTasks = new ArrayList<>();
+        undoneTasks.add(new TaskList("To do"));
+        undoneTasks.add(new TaskList("In progress"));
+        List<Task> tasks = project.getTaskLists().stream()
+                .filter(undoneTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .filter(t -> t.getDeadline().isBefore(LocalDate.now()))
+                .collect(toList());
+
+        //Then
+        Assert.assertEquals(1, tasks.size());
+        Assert.assertEquals("HQLs for analysis", tasks.get(0).getTitle());
+    }
+
+
+    @Test
+    public void testAddTaskListFindLongTasks() {
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        long longTasks = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated())
+                .filter(d -> d.compareTo(LocalDate.now().minusDays(10)) <= 0)
+                .count();
+
+        //Then
+        Assert.assertEquals(2, longTasks);
+    }
+//
+//    @Test
+//    public void testGetTimeDifference(){
+//        User user= new User("zbych", "zbyszek");
+//        User user2= new User("zbychu", "zbyszek");
+//        LocalDate datka = LocalDate.of(2018, Month.APRIL, 6);
+//        LocalDate datka2 = LocalDate.of(2017, Month.JANUARY, 17);
+//        Task task = new Task("przyklad","ktos",user, user2, datka, datka2);
+//        double data = task.getTimeDifference();
+//
+//        Assert.assertEquals(1, data, 0.7);
+//    }
+
+    @Test
+    public void testAddTaskListAverageWorkingOnTask(){
+        //Given
+        Board project = prepareTestData();
+
+        //When
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        long timeSum =
+                project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated())
+                .map(t -> t.until(LocalDate.now(), ChronoUnit.DAYS))
+                .collect(Collectors.summingLong(Long::longValue));
+
+        long n = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> t.getCreated())
+                .count();
+
+long average = timeSum/n;
+
+        //Then
+        Assert.assertEquals(10, average, 0);
+
 
     }
 }
