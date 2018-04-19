@@ -5,16 +5,16 @@ import java.util.*;
 public class SearchingForFlight {
 
     public void findFlight(Flight flight) throws RouteNotFoundException {
-        String airport = flight.getDepartureAirport();
         SearchingForFlight searchingForFlight = new SearchingForFlight();
          Map<String, Boolean> status = searchingForFlight.getAirport();
-        if(status.containsKey(airport)) {
-            System.out.println("route avaiable");
-            } else {
-                 System.out.println(status.get(airport));
+             if (status.containsKey(flight.getDepartureAirport()) && status.get(flight.getDepartureAirport())) {
+                 System.out.println("route avaiable");
+             } else {
+                 System.out.println(status.get(flight.getDepartureAirport()));
                  throw new RouteNotFoundException("route not found!");
-        }
+             }
     }
+
     public Map<String, Boolean> getAirport() {
         Map<String, Boolean> airportStatus = new HashMap<>();
         airportStatus.put("Warszawa", true);
