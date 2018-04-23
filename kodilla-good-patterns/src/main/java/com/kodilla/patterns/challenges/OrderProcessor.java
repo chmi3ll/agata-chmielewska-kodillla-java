@@ -3,13 +3,15 @@ package com.kodilla.patterns.challenges;
 public class OrderProcessor {
 
     private MailService mailService;
-    private OrderRepository orderRepository;
     private OrderService orderService;
+    private OrderRepository orderRepository;
 
-    public OrderProcessor(MailService mailService, OrderRepository orderRepository, OrderService orderService) {
+
+    public OrderProcessor(MailService mailService, OrderService orderService, OrderRepository orderRepository) {
         this.mailService = mailService;
-        this.orderRepository = orderRepository;
         this.orderService = orderService;
+        this.orderRepository = orderRepository;
+
     }
 
     public OrderDTO process(final OrderRequest orderRequest){

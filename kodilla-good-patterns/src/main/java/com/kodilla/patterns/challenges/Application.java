@@ -7,7 +7,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        ProductOrderService productOrderService = new ProductOrderService(
+        OrderProcessor orderProcessor = new OrderProcessor(
                 new MailService() {
                     @Override
                     public void inform(User user) {
@@ -17,13 +17,12 @@ public class Application {
                             System.out.println("Narazie");
                         }
                     }
-                }
-                ,
+                },
                 new OrderService() {
-            @Override
-            public boolean buy(User user, LocalDate date, LocalTime time, double cash) {
-                return false;
-            }
+                    @Override
+                    public boolean buy(User user, LocalDate date, LocalTime time, double cash) {
+                        return false ;
+                    }
         },
                 new OrderRepository() {
             @Override
@@ -33,7 +32,7 @@ public class Application {
         });
         OrderRequestRetriver orderRequestRetriver = new OrderRequestRetriver();
         OrderRequest orderRequest = orderRequestRetriver.retrieveRequest();
-        productOrderService.process(orderRequest);
+        orderProcessor.process(orderRequest);
 
     }
 }
