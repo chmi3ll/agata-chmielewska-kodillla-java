@@ -11,5 +11,6 @@ public class User {
         this.surname = surname;
         this.login = login;
         this.email = email;
+
     }
 }
