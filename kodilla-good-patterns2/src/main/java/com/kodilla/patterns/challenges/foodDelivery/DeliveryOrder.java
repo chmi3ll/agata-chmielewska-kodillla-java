@@ -14,26 +14,26 @@ public class DeliveryOrder {
     Product product8 = new Product("juice", 100, 3);
     Product product9 = new Product("carrot", 45, 1.5);
 
-    ProductList extraFoodShop = new ProductList("ExtraFoodShop");
-            extraFoodShop.addProduct(product1);
-            extraFoodShop.addProduct(product2);
-            extraFoodShop.addProduct(product3);
+    public Delivery retrieveDelivery() {
+        ProductList extraFoodShop = new ProductList("ExtraFoodShop");
+        extraFoodShop.addProduct(new Product("chicken", 3, 15));
+        extraFoodShop.addProduct(product2);
+        extraFoodShop.addProduct(product3);
 
-    ProductList healthyShop = new ProductList("HealthyShop");
-            healthyShop.addProduct(product4);
-            healthyShop.addProduct(product5);
-            healthyShop.addProduct(product6);
+        ProductList healthyShop = new ProductList("HealthyShop");
+        healthyShop.addProduct(product4);
+        healthyShop.addProduct(product5);
+        healthyShop.addProduct(product6);
 
-    ProductList glutenFreeShop = new ProductList("GlutenFreeShop");
-            glutenFreeShop.addProduct(product7);
-            glutenFreeShop.addProduct(product8);
-            glutenFreeShop.addProduct(product9);
+        ProductList glutenFreeShop = new ProductList("GlutenFreeShop");
+        glutenFreeShop.addProduct(product7);
+        glutenFreeShop.addProduct(product8);
+        glutenFreeShop.addProduct(product9);
 
-    Delivery delivery1 = new Delivery("ExtraFood", extraFoodShop);
-    Delivery delivery2 = new Delivery("Healthy", healthyShop);
-    Delivery delivery3 = new Delivery("GlutenFree", glutenFreeShop);
+        Delivery delivery1 = new Delivery("ExtraFood", extraFoodShop);
+        Delivery delivery2 = new Delivery("Healthy", healthyShop);
+        Delivery delivery3 = new Delivery("GlutenFree", glutenFreeShop);
 
-    public Delivery retrieveDelivery(){
-      return delivery1;
+    return delivery1;
     }
 }
