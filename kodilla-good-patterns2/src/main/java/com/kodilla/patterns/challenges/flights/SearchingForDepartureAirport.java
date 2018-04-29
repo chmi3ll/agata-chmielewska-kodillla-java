@@ -14,11 +14,11 @@ public class SearchingForDepartureAirport {
 
     public HashSet<Flight> departureCheck(String departure) {
 
-        Set<Flight> temporaryArrivalSet = new HashSet<>();
-        temporaryArrivalSet = flightMap.getSetOfFlights().stream()
+        Set<Flight> temporaryArrivalSet = flightMap.getSetOfFlights().stream()
                 .filter(m -> m.getDepartureAirport().equals(departure))
                 .collect(Collectors.toSet());
         System.out.println("# elements: " + temporaryArrivalSet.size());
+        System.out.println(temporaryArrivalSet);
 
         return new HashSet<Flight>(temporaryArrivalSet);
     }

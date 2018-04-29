@@ -18,6 +18,7 @@ public class SearchingForArrivalAirport {
                 .filter(m -> m.getArrivalAirport().equals(arrival))
                 .collect(Collectors.toSet());
         System.out.println("# elements: " + temporaryDepartureSet.size());
+        System.out.println(temporaryDepartureSet);
 
         return new HashSet<Flight>(temporaryDepartureSet);
     }

@@ -12,24 +12,24 @@ public class SearchingForFlightsBetween {
     }
 
     public HashSet<Flight> airportCheck(String airport) throws MyException {
-        if (airport!= null) {
-            Set<Flight> temporaryCombinedDepartureSet = new HashSet<>();
-            temporaryCombinedDepartureSet = flightMap.getSetOfFlights().stream()
-                    .filter(m -> m.getDepartureAirport().equals(airport))
-                    .collect(Collectors.toSet());
-            System.out.println("# elements: " + temporaryCombinedDepartureSet.size());
-
+        if (airport != null && flightMap != null) {
             Set<Flight> temporaryCombinedArrivalSet = new HashSet<>();
             temporaryCombinedArrivalSet = flightMap.getSetOfFlights().stream()
                     .filter(m -> m.getArrivalAirport().equals(airport))
                     .collect(Collectors.toSet());
             System.out.println("# elements: " + temporaryCombinedArrivalSet.size());
 
-            new HashSet<Flight>(temporaryCombinedDepartureSet).addAll(temporaryCombinedArrivalSet);
-            System.out.println(temporaryCombinedDepartureSet + " " + temporaryCombinedArrivalSet);
-            return new HashSet<Flight>(temporaryCombinedDepartureSet);
+            Set<Flight> temporaryCombinedDepartureSet = new HashSet<>();
+            temporaryCombinedDepartureSet = flightMap.getSetOfFlights().stream()
+                    .filter(m -> m.getDepartureAirport().equals(airport))
+                    .collect(Collectors.toSet());
+            System.out.println("# elements: " + temporaryCombinedDepartureSet.size());
+
+            new HashSet<Flight>(temporaryCombinedArrivalSet).addAll(temporaryCombinedDepartureSet);
+            System.out.println(temporaryCombinedArrivalSet + " " + temporaryCombinedDepartureSet);
+            return new HashSet<Flight>(temporaryCombinedArrivalSet);
         }
-        throw new MyException("airport was null");
+        throw new MyException("airport or flightMap was null");
     }
 }
 

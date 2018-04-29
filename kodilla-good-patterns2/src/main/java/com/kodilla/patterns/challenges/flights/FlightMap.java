@@ -7,7 +7,7 @@ import java.util.Set;
 
 public final class FlightMap {
 
-    private final Set<Flight> mapOfFlights = new HashSet<>();
+    private final Set<Flight> setOfFlights = new HashSet<>();
 
     public FlightMap() {
         Flight flight1 = new Flight("Kraków", "Warszawa");
@@ -16,14 +16,14 @@ public final class FlightMap {
         Flight flight4 = new Flight("Gdańsk", "Warszawa");
         Flight flight5 = new Flight("Poznań", "Kraków");
 
-        mapOfFlights.add(flight1);
-        mapOfFlights.add(flight2);
-        mapOfFlights.add(flight3);
-        mapOfFlights.add(flight4);
-        mapOfFlights.add(flight5);
+        setOfFlights.add(flight1);
+        setOfFlights.add(flight2);
+        setOfFlights.add(flight3);
+        setOfFlights.add(flight4);
+        setOfFlights.add(flight5);
         }
 
         public Set<Flight> getSetOfFlights() {
-        return new HashSet<>(mapOfFlights);
+        return new HashSet<>(setOfFlights);
     }
 }
