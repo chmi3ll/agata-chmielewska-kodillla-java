@@ -11,7 +11,7 @@ public class SearchingForFlightsBetween {
         this.flightMap = flightMap;
     }
 
-    public HashSet<Flight> airportCheck(String airport) throws MyException {
+    public Set<Flight> airportCheck(String airport) throws MyException {
         if (airport != null && flightMap != null) {
             Set<Flight> temporaryCombinedArrivalSet = new HashSet<>();
             temporaryCombinedArrivalSet = flightMap.getSetOfFlights().stream()
@@ -25,9 +25,9 @@ public class SearchingForFlightsBetween {
                     .collect(Collectors.toSet());
             System.out.println("# elements: " + temporaryCombinedDepartureSet.size());
 
-            new HashSet<Flight>(temporaryCombinedArrivalSet).addAll(temporaryCombinedDepartureSet);
-            System.out.println(temporaryCombinedArrivalSet + " " + temporaryCombinedDepartureSet);
-            return new HashSet<Flight>(temporaryCombinedArrivalSet);
+            temporaryCombinedArrivalSet.addAll(temporaryCombinedDepartureSet);
+            System.out.println(temporaryCombinedArrivalSet);
+            return temporaryCombinedArrivalSet;
         }
         throw new MyException("airport or flightMap was null");
     }

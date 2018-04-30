@@ -10,7 +10,7 @@ public class FlightProcessor {
         this.flightMap = flightMap;
     }
 
-    public HashSet<Flight> process(FlightRequest flightRequest) throws MyException {
+    public Set<Flight> process(FlightRequest flightRequest) throws MyException {
         if (flightRequest.getOption().getOptionName().equals("departure")) {
         SearchingForDepartureAirport searchingForDepartureAirport = new SearchingForDepartureAirport(flightMap);
         return searchingForDepartureAirport.departureCheck(flightRequest.getAirport());
