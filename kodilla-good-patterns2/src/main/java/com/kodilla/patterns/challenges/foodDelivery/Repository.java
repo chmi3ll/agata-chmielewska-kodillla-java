@@ -2,9 +2,9 @@ package com.kodilla.patterns.challenges.foodDelivery;
 
 import java.util.Random;
 
-public class Repository implements OrderService {
+public class Repository implements OrderRepository {
     @Override
-    public boolean order(Product product) {
+    public boolean addOrder(Product product) {
         if (product != null) {
             Random random = new Random();
             return random.nextBoolean();

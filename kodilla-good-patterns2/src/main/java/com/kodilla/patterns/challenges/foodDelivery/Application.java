@@ -3,42 +3,14 @@ package com.kodilla.patterns.challenges.foodDelivery;
 public class Application {
 
     public static void main(String[] args) {
+        Repository repository;
+        Service service;
 
             Product someProduct = new Product("salad", 1);
 
-            ExtraFoodShop extraFoodShop = new ExtraFoodShop(new OrderRepository() {
-                    @Override
-                    public boolean addOrder(Product product) {
-                            return true;
-                    }
-            }, new OrderService() {
-                    @Override
-                    public boolean order(Product product) {
-                            return true;
-                    }
-            });
-            GlutenFreeShop glutenFreeShop = new GlutenFreeShop(new OrderRepository() {
-                    @Override
-                    public boolean addOrder(Product product) {
-                            return true;
-                    }
-            }, new OrderService() {
-                    @Override
-                    public boolean order(Product product) {
-                            return true;
-                    }
-            });
-            HealthyShop healthyShop = new HealthyShop(new OrderRepository() {
-                    @Override
-                    public boolean addOrder(Product product) {
-                            return true;
-                    }
-            }, new OrderService() {
-                    @Override
-                    public boolean order(Product product) {
-                            return true;
-                    }
-            });
+            ExtraFoodShop extraFoodShop = new ExtraFoodShop(repository = new Repository(), service = new Service());
+            GlutenFreeShop glutenFreeShop = new GlutenFreeShop(repository = new Repository(), service = new Service());
+            HealthyShop healthyShop = new HealthyShop(repository = new Repository(), service = new Service());
 
             ProductChecker productChecker1 = new ProductChecker(extraFoodShop.getEfsProductList());
             boolean resultEFS = productChecker1.checkProduct(someProduct);

@@ -5,13 +5,13 @@ import java.util.List;
 
 public class HealthyShop {
 
-    private OrderRepository orderRepository;
-    private OrderService orderService;
+    private Repository repository;
+    private Service service;
     private List<Product> productList = new ArrayList<>();
 
-    public HealthyShop(OrderRepository orderRepository, OrderService orderService) {
-        this.orderRepository = orderRepository;
-        this.orderService = orderService;
+    public HealthyShop(Repository repository, Service service) {
+        this.repository = repository;
+        this.service = service;
     }
 
     public String sendEmail(Product product) {
@@ -27,9 +27,9 @@ public class HealthyShop {
 
     public void process(Product product){
 
-        boolean isOrdered = orderService.order(product);
+        boolean isOrdered = service.order(product);
         if (isOrdered){
-            orderRepository.addOrder(product);
+            repository.addOrder(product);
             sendEmail(product);
         }
     }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GlutenFreeShop {
-    private OrderRepository orderRepository;
-    private OrderService orderService;
+    private Repository repository;
+    private Service service;
     private List<Product> productList = new ArrayList<>();
 
-    public GlutenFreeShop(OrderRepository orderRepository, OrderService orderService) {
-        this.orderRepository = orderRepository;
-        this.orderService = orderService;
+    public GlutenFreeShop(Repository repository, Service service) {
+        this.repository = repository;
+        this.service = service;
     }
 
     public String sendSms(Product product) {
@@ -26,9 +26,9 @@ public class GlutenFreeShop {
 
     public void process(Product product){
 
-        boolean isOrdered = orderService.order(product);
+        boolean isOrdered = service.order(product);
         if (isOrdered){
-            orderRepository.addOrder(product);
+            repository.addOrder(product);
             sendSms(product);
         }
     }

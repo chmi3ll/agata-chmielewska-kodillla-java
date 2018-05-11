@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExtraFoodShop {
-    private OrderRepository orderRepository;
-    private OrderService orderService;
+    private Repository repository;
+    private Service service;
     private List<Product> productList = new ArrayList();
 
-    public ExtraFoodShop(OrderRepository orderRepository, OrderService orderService) {
-        this.orderRepository = orderRepository;
-        this.orderService = orderService;
+    public ExtraFoodShop(Repository repository, Service service) {
+        this.repository = repository;
+        this.service = service;
     }
 
     public List<Product> getEfsProductList() {
@@ -22,9 +22,9 @@ public class ExtraFoodShop {
 
     public void process(Product product){
 
-        boolean isOrdered = orderService.order(product);
+        boolean isOrdered = service.order(product);
         if (isOrdered){
-            orderRepository.addOrder(product);
+            repository.addOrder(product);
         }
     }
 }
