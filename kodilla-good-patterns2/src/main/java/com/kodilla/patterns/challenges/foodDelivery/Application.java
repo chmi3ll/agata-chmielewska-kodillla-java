@@ -3,14 +3,14 @@ package com.kodilla.patterns.challenges.foodDelivery;
 public class Application {
 
     public static void main(String[] args) {
-        Repository repository;
-        Service service;
+        Repository repository = new Repository();
+        Service service = new Service();
 
             Product someProduct = new Product("salad", 1);
 
-            ExtraFoodShop extraFoodShop = new ExtraFoodShop(repository = new Repository(), service = new Service());
-            GlutenFreeShop glutenFreeShop = new GlutenFreeShop(repository = new Repository(), service = new Service());
-            HealthyShop healthyShop = new HealthyShop(repository = new Repository(), service = new Service());
+            ExtraFoodShop extraFoodShop = new ExtraFoodShop(repository, service);
+            GlutenFreeShop glutenFreeShop = new GlutenFreeShop(repository, service);
+            HealthyShop healthyShop = new HealthyShop(repository, service);
 
             ProductChecker productChecker1 = new ProductChecker(extraFoodShop.getEfsProductList());
             boolean resultEFS = productChecker1.checkProduct(someProduct);
