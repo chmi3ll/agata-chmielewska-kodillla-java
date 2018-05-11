@@ -20,10 +20,9 @@ public class ProductChecker {
 
     public boolean checkProduct(Product someProduct) {
         if ((productList.size()) != 0) {
-            if (getProduct().getProductName().equals(someProduct.getProductName()) && getProduct().getQuantity() == (someProduct.getQuantity())) {
-                return true;
-            }
+            return getProduct().getProductName().equals(someProduct.getProductName()) && getProduct().getQuantity() == (someProduct.getQuantity());
+        } else {
+            return false;
         }
-        return true;
     }
 }
