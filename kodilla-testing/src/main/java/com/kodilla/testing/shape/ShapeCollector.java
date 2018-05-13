@@ -35,13 +35,11 @@ public class ShapeCollector {
     }
 
     public String showFigures() {
-        Shape figura = null;
-        for (int n=0; n<shapesList.size(); n++){
-            figura = shapesList.get(n);
-        }
+
+
         String listString = "";
         for(Shape s: shapesList){
-            listString += s.getShapeName() + "\t";
+            listString += s.getShapeName();
         }
         return listString;
     }

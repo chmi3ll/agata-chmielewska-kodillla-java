@@ -1,8 +1,8 @@
-import com.kodilla.testing.shape.*;
+import com.kodilla.testing.shape.Circle;
+import com.kodilla.testing.shape.ShapeCollector;
+import com.kodilla.testing.shape.Square;
+import com.kodilla.testing.shape.Triangle;
 import org.junit.*;
-import org.junit.Test;
-
-import java.util.ArrayList;
 
 
 // import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class ShapeCollectorTestSuite {
         String pokaz = figury.showFigures();
 
         //Then
-        String listaFigur = "square" + "\t" + "circle" + "\t" + "triangle";
+        String listaFigur = "squarecircletriangle";
         Assert.assertEquals(listaFigur, pokaz);
 
     }
