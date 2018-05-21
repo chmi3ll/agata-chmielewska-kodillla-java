@@ -40,10 +40,10 @@ public class InvoiceDaoTestSuite {
         int id = invoice.getId();
 
         //Then
-        Assert.assertNotEquals(1, id);
+        Assert.assertEquals(1, id);
 
         //CleanUp
-        //taskDao.deleteById(id);
+        invoiceDao.deleteAll();
 
     }
 
