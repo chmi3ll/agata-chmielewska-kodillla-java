@@ -89,8 +89,24 @@ public class CompanyDaoTestSuite {
         lindaKovalsky.getCompanies().add(greyMatter);
 
         //When
+        employeeDao.save(johnSmith);
+        int johnSmithId = johnSmith.getId();
+        employeeDao.save(stephanieClarckson);
+        int stephanieClarcksonId = stephanieClarckson.getId();
+        employeeDao.save(lindaKovalsky);
+        int lindaKovalskyId = lindaKovalsky.getId();
+
         List<Employee> smith = employeeDao.retrieveEmployees("Smith");
-        Assert.assertEquals(2, smith.size());
+        Assert.assertEquals(1, smith.size());
+
+        //CleanUp
+        try {
+            employeeDao.deleteById(johnSmithId);
+            employeeDao.deleteById(stephanieClarcksonId);
+            employeeDao.deleteById(lindaKovalskyId);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 
     @Test
@@ -117,8 +133,24 @@ public class CompanyDaoTestSuite {
         lindaKovalsky.getCompanies().add(greyMatter);
 
         //When
-        List<Company> companyStartingWith = companyDao.retrieveCompanyStartingWith("sof");
-        Assert.assertEquals(2, companyStartingWith.size());
+        //When
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
 
+        List<Company> companyStartingWith = companyDao.retrieveCompanyStartingWith("sof");
+        Assert.assertEquals(1, companyStartingWith.size());
+
+        //CleanUp
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }
