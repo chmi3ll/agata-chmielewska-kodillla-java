@@ -43,7 +43,7 @@ public class InvoiceDaoTestSuite {
         Assert.assertEquals(1, id);
 
         //CleanUp
-        invoiceDao.deleteAll();
+        invoiceDao.deleteById(id);
 
     }
 
