@@ -19,12 +19,6 @@ public class ManyToManyService {
     @Autowired
     CompanyDao companyDao;
 
-    @Autowired
-    Company company;
-
-    @Autowired
-    Employee employee;
-
     public void saveEmployee(Employee employee) {
         employeeDao.save(employee);
     }
@@ -32,10 +26,6 @@ public class ManyToManyService {
     public void saveCompany(Company company) {
         companyDao.save(company);
     }
-//    public void savaData(Employee employee, Company company) {
-//        employee.saveEmployee(employee);
-//        company.saveCompanies(company);
-//    }
 
     public List<Employee> retrieveEmployeesByPart(String part) {
         return employeeDao.retrieveEmployeesBy(part, part);
@@ -44,6 +34,4 @@ public class ManyToManyService {
     public List<Company> retrieveCompaniesByPart(String part) {
         return companyDao.retrieveCompaniesBy(part);
     }
-
-    //int johnSmithId = johnSmith.getId();
 }

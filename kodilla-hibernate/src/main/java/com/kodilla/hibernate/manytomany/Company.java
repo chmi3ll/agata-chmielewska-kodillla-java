@@ -2,7 +2,6 @@ package com.kodilla.hibernate.manytomany;
 
 import com.kodilla.hibernate.manytomany.dao.CompanyDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,7 +23,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "COMPANIES")
-@Component
 public class Company {
 
     @Autowired
