@@ -1,9 +1,14 @@
 package com.kodilla.hibernate.manytomany;
 
+import com.kodilla.hibernate.manytomany.dao.CompanyDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyStartingWith",
@@ -12,9 +17,19 @@ import java.util.List;
         resultClass = Company.class
 )
 
+@NamedQuery(
+        name = "Company.retrieveCompanyBy",
+        query = "FROM Company WHERE company_name LIKE CONCAT('%', :PART, '%')"
+)
+
 @Entity
 @Table(name = "COMPANIES")
+@Component
 public class Company {
+
+    @Autowired
+    CompanyDao companyDao;
+
     private int id;
     private String name;
     private List<Employee> employees = new ArrayList<>();
@@ -56,4 +71,8 @@ public class Company {
     private void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
+
+//    public void saveCompanies(Company company) {
+//        companyDao.save(company);
+//    }
 }
