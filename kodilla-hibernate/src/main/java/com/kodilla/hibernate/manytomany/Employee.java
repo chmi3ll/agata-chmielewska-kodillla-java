@@ -1,31 +1,27 @@
 package com.kodilla.hibernate.manytomany;
 
-import com.kodilla.hibernate.manytomany.dao.EmployeeDao;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-@NamedQueries({
-        @NamedQuery(
+
+@NamedQuery(
                 name = "Employee.retrieveEmployees",
                 query = "FROM Employee WHERE lastname = :LASTNAME"
-        ),
-        @NamedQuery(
-                name = "Employee.retrieveEmployeesBy",
-                query = "FROM Employee WHERE firstname LIKE CONCAT('%', :PART, '%') OR " +
-                        "lastname LIKE CONCAT('%', :PART, '%')"
-        )
-})
+)
+
+@NamedNativeQuery(
+        name = "Employee.retrieveEmployeesBy",
+        query = "SELECT * FROM EMPLOYEES" +
+                " WHERE firstname LIKE CONCAT('%', :PART, '%') OR " +
+                "lastname LIKE CONCAT('%', :PART, '%')"
+)
 
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
-
-    @Autowired
-    EmployeeDao employeeDao;
 
     private int id;
     private String firstname;
@@ -86,8 +82,4 @@ public class Employee {
     public void setCompanies(List<Company> companies) {
         this.companies = companies;
     }
-
-//    public void saveEmployee(Employee employee) {
-//        employeeDao.save(employee);
-//    }
 }

@@ -1,32 +1,28 @@
 package com.kodilla.hibernate.manytomany;
 
-import com.kodilla.hibernate.manytomany.dao.CompanyDao;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyStartingWith",
+                query = "SELECT * FROM COMPANIES" +
+                        " WHERE LEFT(COMPANY_NAME, 3) LIKE :PARAMETR",
+                resultClass = Company.class
+        ),
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompanyStartingWith",
-        query = "SELECT * FROM COMPANIES" +
-                " WHERE LEFT(COMPANY_NAME, 3) LIKE :PARAMETR",
-        resultClass = Company.class
-)
-
-@NamedQuery(
-        name = "Company.retrieveCompanyBy",
-        query = "FROM Company WHERE company_name LIKE CONCAT('%', :PART, '%')"
-)
+        @NamedNativeQuery(
+                name = "Company.retrieveCompaniesBy",
+                query = "SELECT * FROM COMPANIES" +
+                        " WHERE COMPANY_NAME LIKE CONCAT('%', :PART, '%')"
+        )
+})
 
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
-
-    @Autowired
-    CompanyDao companyDao;
 
     private int id;
     private String name;
@@ -70,7 +66,4 @@ public class Company {
         this.employees = employees;
     }
 
-//    public void saveCompanies(Company company) {
-//        companyDao.save(company);
-//    }
 }
