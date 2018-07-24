@@ -1,9 +1,5 @@
-package com.kodilla.patterns3.decoartor.pizza;
+package com.kodilla.patterns3.decorator.pizza;
 
-import com.kodilla.patterns3.decorator.pizza.BasicPizzaOrder;
-import com.kodilla.patterns3.decorator.pizza.PizzaOrder;
-import com.kodilla.patterns3.decorator.pizza.PizzaPeperoni;
-import com.kodilla.patterns3.decorator.pizza.PizzaZpieczarkami;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
