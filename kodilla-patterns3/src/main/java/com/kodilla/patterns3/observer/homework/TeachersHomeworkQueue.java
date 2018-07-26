@@ -1,8 +1,8 @@
 package com.kodilla.patterns3.observer.homework;
 
 public class TeachersHomeworkQueue implements Observer {
-    String name;
-    int updateCount;
+    private String name;
+    private int updateCount;
 
     public TeachersHomeworkQueue(String name) {
         this.name = name;
