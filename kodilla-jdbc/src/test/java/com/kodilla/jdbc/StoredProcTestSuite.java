@@ -43,7 +43,7 @@ public class StoredProcTestSuite {
         //Then
         String sqlCkeckTable = " SELECT COUNT(*) AS HOW_MANY FROM BOOKS WHERE BESTSELLER = \"1\"";
         ResultSet rs = statement.executeQuery(sqlCkeckTable);
-        int howMany = 0;
+        int howMany = -1;
         if (rs.next()) {
             howMany = rs.getInt("HOW_MANY");
         }
