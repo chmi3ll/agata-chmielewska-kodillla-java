@@ -63,4 +63,71 @@ public class Main {
     public static Integer getAverageJava8(List<Integer> numbers) {
         return getSumJava8(numbers)/numbers.size();
     }
+
+    public static long getCountEmptyStringUsingJava7(List<String> strings) {
+        int suma = 0;
+        for(String stringi : strings) {
+            if (stringi.length() < 1) {
+                suma++;
+            }
+        }
+        return suma;
+    }
+
+    public static long getCountLength3UsingJava7(List<String> strings) {
+        int suma = 0;
+        for(String string: strings) {
+           if(string.length() == 3) {
+               suma++;
+           }
+        }
+        return suma;
+    }
+
+    public static List<String> deleteEmptyStringsUsingJava7(List<String> strings) {
+        List<String> newList = new ArrayList<>();
+        for(String string: strings) {
+            if(string.length() > 0) {
+             newList.add(string);
+            }
+        }
+        return newList;
+    }
+
+    public static String getMergedStringUsingJava7(List<String> strings, String s) {
+        String jakisString = "";
+        for(String string: strings) {
+            if(string.length() > 0) {
+                jakisString += string + s;
+            }
+        }
+        return jakisString.substring(0,jakisString.length()-1);
+    }
+
+    public static List<Integer> getSquares(List<Integer> numbers) {
+        List<Integer> lista = new ArrayList<>();
+        for(Integer number: numbers){
+                int square = number * number;
+                if(!lista.contains(square)) {
+            lista.add(square);
+            }
+        }
+        return lista;
+    }
+
+    public static Integer getMax(List<Integer> numbers) {
+        return 1;
+    }
+
+    public static Integer getMin(List<Integer> numbers) {
+        return 0;
+    }
+
+    public static Integer getSum(List<Integer> numbers) {
+        return 0;
+    }
+
+    public static Integer getAverage(List<Integer> numbers) {
+        return 0;
+    }
 }
